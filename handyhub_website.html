@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101827">
+<title>HandyHub — Free everyday tools</title>
+<meta name="description" content="Fast, free everyday tools: calculator, unit converter, word counter, and focus timer.">
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#667085;--line:#e5eaf2;--brand:#315efb;--brand2:#6b8cff;--dark:#101827;--good:#12805c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+header{background:linear-gradient(120deg,#101827,#1d2e50);color:white;padding:28px 20px 58px}
+.wrap{max-width:1060px;margin:auto}.top{display:flex;align-items:center;justify-content:space-between;gap:16px}.logo{font-weight:850;font-size:1.25rem;letter-spacing:-.04em}.logo span{color:#8eabff}.tag{font-size:.82rem;color:#c7d3ee;border:1px solid #405071;padding:6px 10px;border-radius:999px}
+.hero{padding:46px 0 0;max-width:680px}.eyebrow{color:#a9bcff;text-transform:uppercase;font-size:.75rem;font-weight:800;letter-spacing:.13em}.hero h1{font-size:clamp(2.2rem,6vw,3.8rem);line-height:1.05;letter-spacing:-.055em;margin:12px 0}.hero p{color:#d1d9e8;font-size:1.05rem;max-width:570px;margin:0}
+main{margin:-30px auto 0;padding:0 20px 54px;max-width:1100px}.tabs{display:flex;gap:8px;overflow:auto;padding:0 0 18px}.tab{white-space:nowrap;border:1px solid var(--line);background:white;color:var(--muted);padding:10px 15px;border-radius:12px;font-weight:700;cursor:pointer}.tab.active{background:var(--brand);border-color:var(--brand);color:white}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 28px rgba(20,35,70,.045);min-width:0}.card h2{font-size:1.12rem;margin:0 0 5px;letter-spacing:-.02em}.sub{color:var(--muted);font-size:.9rem;margin:0 0 18px}
+label{display:block;font-size:.82rem;font-weight:750;color:#475467;margin:12px 0 6px}input,select,textarea{width:100%;border:1px solid #d8dfeb;border-radius:11px;padding:12px 13px;font:inherit;color:var(--ink);background:white;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px #315efb1c}textarea{min-height:135px;resize:vertical}
+button.primary{border:0;border-radius:11px;background:var(--brand);color:white;font:inherit;font-weight:750;padding:11px 16px;cursor:pointer;margin-top:12px}button.primary:hover{background:#244ce0}button.secondary{border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font:inherit;font-weight:700;padding:9px 12px;cursor:pointer}
+.result{background:#f2f5ff;border:1px solid #e1e8ff;border-radius:12px;padding:13px;margin-top:13px;font-weight:750;min-height:48px}.muted{color:var(--muted);font-weight:500;font-size:.88rem}.hidden{display:none!important}
+.calc-display{font-size:1.7rem;text-align:right;font-weight:750;background:#f7f9fd;margin-bottom:10px}.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.keys button{padding:14px 4px;font-size:1rem;margin:0}.keys button.op{background:#edf1ff;color:#244ce0}.keys button.equal{background:#172b59}
+.timer{text-align:center;padding:10px 0}.time{font-size:3.5rem;font-weight:850;letter-spacing:-.06em;font-variant-numeric:tabular-nums}.timer-controls{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}.stat{background:#f7f9fd;padding:10px 12px;border-radius:10px;flex:1;min-width:90px}.stat strong{display:block;font-size:1.15rem}.stat span{font-size:.75rem;color:var(--muted)}
+footer{max-width:1060px;margin:auto;padding:0 20px 32px;color:var(--muted);font-size:.84rem;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.hero{padding-top:35px}.card{padding:18px}header{padding-bottom:52px}.tag{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><div class="logo">handy<span>hub</span></div><div class="tag">Free tools. Less hassle.</div></div>
+  <section class="hero"><div class="eyebrow">Your everyday toolkit</div><h1>Small tools.<br>Big time-savers.</h1><p>Quick, useful tools for school, work, and everyday life. No account needed. Just open a tool and get it done.</p></section>
+</div></header>
+<main>
+  <nav class="tabs" aria-label="Tools">
+    <button class="tab active" data-target="converter">Unit converter</button>
+    <button class="tab" data-target="counter">Word counter</button>
+    <button class="tab" data-target="timer">Focus timer</button>
+    <button class="tab" data-target="calculator">Calculator</button>
+  </nav>
+  <div class="grid">
+    <section class="card tool" id="converter">
+      <h2>Unit converter</h2><p class="sub">Convert common measurements in seconds.</p>
+      <label for="category">Measurement</label><select id="category"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option></select>
+      <label for="amount">Value</label><input id="amount" type="number" value="1" step="any">
+      <div class="grid" style="gap:10px">
+        <div><label for="fromUnit">From</label><select id="fromUnit"></select></div>
+        <div><label for="toUnit">To</label><select id="toUnit"></select></div>
+      </div>
+      <div class="result" id="conversionResult" aria-live="polite">1 meter = 100 centimeters</div>
+    </section>
+    <section class="card tool hidden" id="counter">
+      <h2>Word counter</h2><p class="sub">Count words, characters, and estimated reading time.</p>
+      <label for="textInput">Paste or type your text</label><textarea id="textInput" placeholder="Start typing here..."></textarea>
+      <div class="stats"><div class="stat"><strong id="words">0</strong><span>Words</span></div><div class="stat"><strong id="chars">0</strong><span>Characters</span></div><div class="stat"><strong id="readtime">0 min</strong><span>Reading time</span></div></div>
+      <button class="secondary" id="clearText">Clear text</button>
+    </section>
+    <section class="card tool hidden" id="timer">
+      <h2>Focus timer</h2><p class="sub">Work in a focused block, then take a breather.</p>
+      <div class="timer"><div class="time" id="clock">25:00</div><div class="muted" id="timerLabel">Focus session</div></div>
+      <div class="timer-controls"><button class="primary" id="startTimer">Start</button><button class="secondary" id="pauseTimer">Pause</button><button class="secondary" id="resetTimer">Reset</button></div>
+      <div class="stats"><div class="stat"><strong>25 min</strong><span>Focus</span></div><div class="stat"><strong>5 min</strong><span>Break</span></div></div>
+      <button class="secondary" id="modeToggle">Switch to 5-minute break</button>
+    </section>
+    <section class="card tool hidden" id="calculator">
+      <h2>Calculator</h2><p class="sub">A simple calculator for everyday math.</p>
+      <input class="calc-display" id="display" value="0" readonly aria-label="Calculator display">
+      <div class="keys" id="keys">
+        <button class="secondary" data-key="C">C</button><button class="secondary op" data-key="(">(</button><button class="secondary op" data-key=")">)</button><button class="secondary op" data-key="/">÷</button>
+        <button class="secondary" data-key="7">7</button><button class="secondary" data-key="8">8</button><button class="secondary" data-key="9">9</button><button class="secondary op" data-key="*">×</button>
+        <button class="secondary" data-key="4">4</button><button class="secondary" data-key="5">5</button><button class="secondary" data-key="6">6</button><button class="secondary op" data-key="-">−</button>
+        <button class="secondary" data-key="1">1</button><button class="secondary" data-key="2">2</button><button class="secondary" data-key="3">3</button><button class="secondary op" data-key="+">+</button>
+        <button class="secondary" data-key="0">0</button><button class="secondary" data-key=".">.</button><button class="secondary" data-key="back">⌫</button><button class="primary equal" data-key="=">=</button>
+      </div><p class="muted">Tip: use the buttons to build an expression, then press equals.</p>
+    </section>
+  </div>
+</main>
+<footer><span>© <span id="year"></span> HandyHub</span><span>Free to use · No sign-up · Built to be simple</span></footer>
+<script>
+const $=id=>document.getElementById(id);
+document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b===btn));
+ document.querySelectorAll('.tool').forEach(panel=>panel.classList.toggle('hidden',panel.id!==btn.dataset.target));
+}));
+const units={
+ length:{meter:1, kilometer:1000, centimeter:.01, millimeter:.001, mile:1609.344, yard:.9144, foot:.3048, inch:.0254},
+ weight:{kilogram:1, gram:.001, pound:.45359237, ounce:.028349523125}
+};
+const category=$('category'),from=$('fromUnit'),to=$('toUnit');
+function fillUnits(){
+ let c=category.value, opts=c==='temperature'?['Celsius','Fahrenheit','Kelvin']:Object.keys(units[c]);
+ from.innerHTML=to.innerHTML=opts.map(x=>`<option>${x}</option>`).join('');
+ if(c==='length'){from.value='meter';to.value='centimeter'}else if(c==='weight'){from.value='kilogram';to.value='pound'}else{from.value='Celsius';to.value='Fahrenheit'}
+ convert();
+}
+function convert(){
+ let v=Number($('amount').value),a=from.value,b=to.value,c=category.value,out;
+ if(!Number.isFinite(v)){$('conversionResult').textContent='Enter a number to convert.';return}
+ if(c==='temperature'){
+  let k=a==='Celsius'?v+273.15:a==='Fahrenheit'?(v-32)*5/9+273.15:v;
+  out=b==='Celsius'?k-273.15:b==='Fahrenheit'?(k-273.15)*9/5+32:k;
+ }else out=v*units[c][a]/units[c][b];
+ $('conversionResult').textContent=`${v} ${a} = ${Number(out.toFixed(6))} ${b}`;
+}
+category.addEventListener('change',fillUnits);['amount'].forEach(id=>$(id).addEventListener('input',convert));from.addEventListener('change',convert);to.addEventListener('change',convert);fillUnits();
+function countText(){let t=$('textInput').value.trim(),w=t?t.split(/\s+/).length:0;$('words').textContent=w;$('chars').textContent=$('textInput').value.length;$('readtime').textContent=(w?Math.max(1,Math.ceil(w/200)):0)+' min'}
+$('textInput').addEventListener('input',countText);$('clearText').addEventListener('click',()=>{$('textInput').value='';countText()});
+let duration=25*60,remaining=duration,interval=null,breakMode=false;
+function renderTimer(){let m=Math.floor(remaining/60),s=remaining%60;$('clock').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');$('timerLabel').textContent=breakMode?'Break time':'Focus session'}
+function stopTimer(){if(interval){clearInterval(interval);interval=null}}
+$('startTimer').addEventListener('click',()=>{if(interval)return;interval=setInterval(()=>{remaining--;renderTimer();if(remaining<=0){stopTimer();$('timerLabel').textContent=breakMode?'Break finished — nice work!':'Focus session finished — take a break!';if('Notification'in window&&Notification.permission==='granted')new Notification('HandyHub timer',{body:'Your timer is finished.'});}},1000)});
+$('pauseTimer').addEventListener('click',stopTimer);$('resetTimer').addEventListener('click',()=>{stopTimer();remaining=duration;renderTimer()});
+$('modeToggle').addEventListener('click',()=>{stopTimer();breakMode=!breakMode;duration=(breakMode?5:25)*60;remaining=duration;$('modeToggle').textContent=breakMode?'Switch to 25-minute focus':'Switch to 5-minute break';renderTimer()});renderTimer();
+let expr='';const display=$('display');
+$('keys').addEventListener('click',e=>{let key=e.target.dataset.key;if(!key)return;
+ if(key==='C')expr='';else if(key==='back')expr=expr.slice(0,-1);else if(key==='='){
+  if(!expr)return;
+  if(!/^[0-9+\-*/().\s]+$/.test(expr)){display.value='Error';expr='';return}
+  try{let result=Function('"use strict";return ('+expr+')')();if(!Number.isFinite(result))throw Error();expr=String(Number(result.toFixed(10)))}catch{expr='';display.value='Error';return}
+ }else expr+=key;
+ display.value=expr||'0';
+});
+$('year').textContent=new Date().getFullYear();
+</script>
+</body></html>
